@@ -2,8 +2,9 @@ package service
 
 import (
 	"context"
-
 	"github.com/NameLessCorporation/user-grpc-server/internal/models"
+	"time"
+
 	"github.com/NameLessCorporation/user-grpc-server/internal/repository"
 	"github.com/NameLessCorporation/user-grpc-server/pkg/helpers"
 )
@@ -25,7 +26,18 @@ func NewUsersService(repository repository.Users, hasher *helpers.Md5, tokenMana
 }
 
 // SignUp ...
-func (s *UsersService) SignUp(ctx context.Context, user *models.User) error {
+func (s *UsersService) SignUp(ctx context.Context, input *UserSignUpInput) error {
+	pass, err := s.hasher.NewMD5Hash(input.Password)
+	if err != nil {
+		return err
+	}
+
+	user := &models.User{
+		User: input.User,
+		Name: input.Name,
+		Password: pass,
+		RegisteredAt: time.Now(),
+	}
 	if err := s.repository.Create(ctx, user); err != nil {
 		return err
 	}

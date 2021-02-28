@@ -2,8 +2,8 @@ package repository
 
 import (
 	"context"
-
 	"github.com/NameLessCorporation/user-grpc-server/internal/models"
+
 	"github.com/jmoiron/sqlx"
 )
 

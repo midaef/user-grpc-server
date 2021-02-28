@@ -2,16 +2,16 @@ package server
 
 import (
 	"context"
+	"github.com/NameLessCorporation/user-grpc-server/internal/service"
 
 	"github.com/NameLessCorporation/user-grpc-server/internal/api"
-	"github.com/NameLessCorporation/user-grpc-server/internal/models"
 )
 
 // SignUp ...
 func (s *GRPCServer) SignUp(ctx context.Context, req *api.SignUpRequest) (*api.SignUpResponse, error) {
-	user := &models.User{
+	user := &service.UserSignUpInput{
 		User: req.User,
-		Name:  req.Name,
+		Name: req.Name,
 		Password: req.Password,
 	}
 

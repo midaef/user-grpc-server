@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-
 	"github.com/NameLessCorporation/user-grpc-server/internal/models"
 	"github.com/jmoiron/sqlx"
 )
@@ -21,5 +20,8 @@ func NewUsersRepository(db *sqlx.DB) *UsersRepository {
 
 // Create ...
 func (r *UsersRepository) Create(ctx context.Context, user *models.User) error {
-	return nil
+	_, err := r.db.NamedExecContext(ctx, "INSERT INTO users(username, name, password, registered) " +
+		"VALUES (:username, :name, :password, :registered)", user)
+
+	return err
 }

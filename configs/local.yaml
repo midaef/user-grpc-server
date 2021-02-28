@@ -3,7 +3,7 @@ server:
   port: ":65000"
 
 database:
-  uri: "host=localhost dbname=users sslmode=disable user=postgres password=8093 port=5432"
+  uri: "host=localhost dbname=user sslmode=disable user=postgres password=12345678 port=5432"
 
 token:
   secret_key: "test_secret_key"
