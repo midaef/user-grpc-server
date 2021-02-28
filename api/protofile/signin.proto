@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/NameLessCorporation/user-grpc-server/internal/api";
+
+service SignIn {
+  rpc SignIn(SignInRequest) returns (SignInResponse) {}
+}
+
+message SignInRequest {
+  string user = 1;
+  string password = 2;
+}
+
+message SignInResponse {
+}
