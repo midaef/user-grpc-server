@@ -10,9 +10,9 @@ import (
 // SignUp ...
 func (s *GRPCServer) SignUp(ctx context.Context, req *api.SignUpRequest) (*api.SignUpResponse, error) {
 	user := &models.User{
-		Phone: req.Phone,
-		Email: req.Email,
+		User: req.User,
 		Name:  req.Name,
+		Password: req.Password,
 	}
 
 	err := s.Services.Users.SignUp(ctx, user)
