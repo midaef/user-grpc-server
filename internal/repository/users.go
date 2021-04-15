@@ -20,8 +20,7 @@ func NewUsersRepository(db *sqlx.DB) *UsersRepository {
 
 // Create ...
 func (r *UsersRepository) Create(ctx context.Context, user *models.User) error {
-	_, err := r.db.NamedExecContext(ctx, "INSERT INTO users(username, name, password, registered) " +
-		"VALUES (:username, :name, :password, :registered)", user)
-
+	query := `INSERT INTO users(username, name, password, registered) VALUES (:username, :name, :password, :registered)`
+	_, err := r.db.NamedExecContext(ctx, query, user)
 	return err
 }
